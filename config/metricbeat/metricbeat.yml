@@ -43,6 +43,13 @@ metricbeat.modules:
   enabled: true
   period: 10s
 
+- module: redis
+  metricsets: ["info", "keyspace"]
+  enabled: true
+  period: 10s
+  hosts: ["localhost:6379"]
+  timeout: 1s
+
 processors:
 - add_cloud_metadata:
 output.elasticsearch:
