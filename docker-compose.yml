@@ -72,6 +72,7 @@ services:
       - /proc:/hostfs/proc:ro
       - /sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro
       - /:/hostfs:ro
+      - ./config/metricbeat/metricbeat.yml:/usr/share/metricbeat/metricbeat.yml:ro
     command: metricbeat -e -system.hostfs=/hostfs
     # networks: ['stack']
     network_mode: host
