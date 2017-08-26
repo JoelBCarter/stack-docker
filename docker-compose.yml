@@ -80,7 +80,7 @@ services:
       - /:/hostfs:ro
       - ./config/metricbeat/metricbeat.yml:/usr/share/metricbeat/metricbeat.yml:ro
       - /var/run/docker.sock:/var/run/docker.sock
-    command: metricbeat -e -system.hostfs=/hostfs
+    command: metricbeat -e -system.hostfs=/hostfs -strict.perms=false
     # networks: ['stack']
     network_mode: host
     privileged: true
