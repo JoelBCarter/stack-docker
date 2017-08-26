@@ -18,6 +18,7 @@ services:
   #   ELASTIC_VERSION=5.4.0 TAG=5.4.0-a80c820b docker-compose up
   #
   elasticsearch:
+    container_name: elasticsearch
     image: docker.elastic.co/elasticsearch/elasticsearch:${TAG}
     environment:
       HTTP_HOST: '0.0.0.0'
@@ -28,6 +29,7 @@ services:
     network_mode: host
 
   kibana:
+    container_name: kibana
     image: docker.elastic.co/kibana/kibana:${TAG}
     # ports: ['5601:5601']
     # networks: ['stack']
@@ -37,6 +39,7 @@ services:
       - ./kibana.yml:/usr/share/kibana/config/kibana.yml
 
   logstash:
+    container_name: logstash
     image: docker.elastic.co/logstash/logstash:${TAG}
     # Provide a simple pipeline configuration for Logstash with a bind-mounted file.
     volumes:
@@ -48,6 +51,7 @@ services:
     depends_on: ['elasticsearch']
 
   filebeat:
+    container_name: filebeat
     image: docker.elastic.co/beats/filebeat:${TAG}
     # If the host system has logs at "/var/log", mount them at "/mnt/log"
     # inside the container, where Filebeat can find them.
@@ -57,12 +61,14 @@ services:
     depends_on: ['elasticsearch']
 
   heartbeat:
+    container_name: heartbeat
     image: docker.elastic.co/beats/heartbeat:${TAG}
     # networks: ['stack']
     network_mode: host
     depends_on: ['elasticsearch']
 
   metricbeat:
+    container_name: metricbeat
     image: docker.elastic.co/beats/metricbeat:${TAG}
     # The commented sections below enable Metricbeat to monitor the Docker host,
     # rather than the Metricbeat container. It's problematic with Docker for
@@ -81,6 +87,7 @@ services:
     depends_on: ['elasticsearch']
 
   packetbeat:
+    container_name: packetbeat
     image: docker.elastic.co/beats/packetbeat:${TAG}
     # Packetbeat needs some elevated privileges to capture network traffic.
     # We'll grant them with POSIX capabilities.
@@ -98,6 +105,7 @@ services:
 
   # Run a short-lived container to set up Kibana index patterns and dashboards.
   configure_kibana:
+    container_name: configure_kibana
     # Any Beats image will suffice. We'll use Metricbeat.
     image: docker.elastic.co/beats/metricbeat:${TAG}
     volumes: ['./scripts/configure-kibana.sh:/usr/local/bin/configure-kibana.sh:ro']
