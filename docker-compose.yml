@@ -19,14 +19,14 @@ services:
   #
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:${TAG}
-    environment: ['http.host=0.0.0.0', 'transport.host=127.0.0.1']
-    ports: ['127.0.0.1:9200:9200']
+    environment: ['http.host=0.0.0.0', 'transport.host=localhost']
+    ports: ['9200:9200']
     # networks: ['stack']
     network_mode: host
 
   kibana:
     image: docker.elastic.co/kibana/kibana:${TAG}
-    ports: ['127.0.0.1:5601:5601']
+    ports: ['5601:5601']
     # networks: ['stack']
     network_mode: host
     depends_on: ['elasticsearch']

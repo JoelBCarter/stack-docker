@@ -1,9 +1,71 @@
 ---
-# Default Kibana configuration from kibana-docker.
 
-server.name: "127.0.0.1"
-server.host: "127.0.0.1"
-elasticsearch.url: http://127.0.0.1:9200
+
+# server.port:
+server.host: "localhost"
+# server.basePath:
+# server.maxPayloadBytes:
+server.name: "kibana"
+# server.defaultRoute:
+elasticsearch.url: http://localhost:9200
+# elasticsearch.preserveHost:
+# kibana.index:
+# kibana.defaultAppId:
+# tilemap.url:
+# tilemap.options.minZoom:
+# tilemap.options.maxZoom:
+# tilemap.options.attribution:
+# tilemap.options.subdomains:
+# regionmap:
+#   layers:
+#      - name: "Departments of France"
+#        url: "http://my.cors.enabled.server.org/france_departements.geojson"
+#        attribution: "INRAP"
+#        fields:
+#           - name: "department"
+#             description: "Full department name"
+#           - name: "INSEE"
+#             description: "INSEE numeric identifier"
 elasticsearch.username: elastic
 elasticsearch.password: changeme
+# server.ssl.enabled:
+# server.ssl.certificate:
+# server.ssl.key:
+# server.ssl.keyPassphrase:
+# server.ssl.certificateAuthorities:
+# server.ssl.supportedProtocols:
+# server.ssl.cipherSuites:
+# elasticsearch.ssl.certificate:
+# elasticsearch.ssl.key:
+# elasticsearch.ssl.keyPassphrase:
+# elasticsearch.ssl.certificateAuthorities:
+# elasticsearch.ssl.verificationMode:
+# elasticsearch.pingTimeout:
+# elasticsearch.requestTimeout:
+# elasticsearch.requestHeadersWhitelist:
+# elasticsearch.customHeaders:
+# elasticsearch.shardTimeout:
+# elasticsearch.startupTimeout:
+# pid.file:
+# logging.dest:
+# logging.silent:
+# logging.quiet:
+# logging.verbose:
+# ops.interval:
+status.allowAnonymous: true
+# cpu.cgroup.path.override:
+# cpuacct.cgroup.path.override:
+# console.enabled:
+# elasticsearch.tribe.url:
+# elasticsearch.tribe.username:
+# elasticsearch.tribe.password:
+# elasticsearch.tribe.ssl.certificate:
+# elasticsearch.tribe.ssl.key:
+# elasticsearch.tribe.ssl.keyPassphrase:
+# elasticsearch.tribe.ssl.certificateAuthorities:
+# elasticsearch.tribe.ssl.verificationMode:
+# elasticsearch.tribe.pingTimeout:
+# elasticsearch.tribe.requestTimeout:
+# elasticsearch.tribe.requestHeadersWhitelist:
+# elasticsearch.tribe.customHeaders:
 xpack.monitoring.ui.container.elasticsearch.enabled: true
