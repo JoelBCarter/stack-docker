@@ -51,7 +51,7 @@ services:
     image: docker.elastic.co/beats/filebeat:${TAG}
     # If the host system has logs at "/var/log", mount them at "/mnt/log"
     # inside the container, where Filebeat can find them.
-    # volumes: ['/var/log:/mnt/log:ro']
+    volumes: ['/var/log:/mnt/log:ro']
     # networks: ['stack']
     network_mode: host
     depends_on: ['elasticsearch']
@@ -68,10 +68,10 @@ services:
     # rather than the Metricbeat container. It's problematic with Docker for
     # Windows, however, since "/proc", "/sys" etc. don't exist on Windows.
     # The same likely applies to OSX (needs testing).
-    # volumes:
-    #   - /proc:/hostfs/proc:ro
-    #   - /sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro
-    #   - /:/hostfs:ro
+    volumes:
+      - /proc:/hostfs/proc:ro
+      - /sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro
+      - /:/hostfs:ro
     command: metricbeat -e # -system.hostfs=/hostfs
     # networks: ['stack']
     network_mode: host
