@@ -2,10 +2,10 @@
 
 
 # server.port:
-server.host: "localhost"
+server.host: "0.0.0.0"
 # server.basePath:
 # server.maxPayloadBytes:
-server.name: "kibana"
+server.name: "localhost"
 # server.defaultRoute:
 elasticsearch.url: http://localhost:9200
 # elasticsearch.preserveHost:
