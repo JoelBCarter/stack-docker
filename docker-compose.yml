@@ -24,15 +24,11 @@ services:
       HTTP_HOST: '0.0.0.0'
       TRANSPORT_HOST: 'localhost'
       ES_JAVA_OPTS: "-Xmx256m -Xms256m"
-    # ports: ['9200:9200']
-    # networks: ['stack']
     network_mode: host
 
   kibana:
     container_name: kibana
     image: docker.elastic.co/kibana/kibana:${TAG}
-    # ports: ['5601:5601']
-    # networks: ['stack']
     network_mode: host
     depends_on: ['elasticsearch']
     volumes:
@@ -46,7 +42,6 @@ services:
       - ./config/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
     environment:
       LS_JAVA_OPTS: "-Xmx256m -Xms256m"
-    # networks: ['stack']
     network_mode: host
     depends_on: ['elasticsearch']
 
@@ -56,24 +51,18 @@ services:
     # If the host system has logs at "/var/log", mount them at "/mnt/log"
     # inside the container, where Filebeat can find them.
     volumes: ['/var/log:/mnt/log:ro']
-    # networks: ['stack']
     network_mode: host
     depends_on: ['elasticsearch']
 
   heartbeat:
     container_name: heartbeat
     image: docker.elastic.co/beats/heartbeat:${TAG}
-    # networks: ['stack']
     network_mode: host
     depends_on: ['elasticsearch']
 
   metricbeat:
     container_name: metricbeat
     image: docker.elastic.co/beats/metricbeat:${TAG}
-    # The commented sections below enable Metricbeat to monitor the Docker host,
-    # rather than the Metricbeat container. It's problematic with Docker for
-    # Windows, however, since "/proc", "/sys" etc. don't exist on Windows.
-    # The same likely applies to OSX (needs testing).
     volumes:
       - /proc:/hostfs/proc:ro
       - /sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro
@@ -81,7 +70,6 @@ services:
       - ./config/metricbeat/metricbeat.yml:/usr/share/metricbeat/metricbeat.yml:ro
       - /var/run/docker.sock:/var/run/docker.sock
     command: metricbeat -e -system.hostfs=/hostfs -strict.perms=false
-    # networks: ['stack']
     network_mode: host
     privileged: true
     user: root
@@ -114,6 +102,5 @@ services:
     # sure that they don't confuse Bash.
     command: ['/bin/bash', '-c', 'cat /usr/local/bin/configure-kibana.sh | tr -d "\r" | bash']
     environment: ['ELASTIC_VERSION=${ELASTIC_VERSION}']
-    # networks: ['stack']
     network_mode: host
     depends_on: ['kibana']
