@@ -56,7 +56,7 @@ metricbeat.modules:
   period: 10s
   hosts: ["localhost:8081", "localhost:8082"]
   metrics_path: /metrics
-  # namespace: example
+  namespace: example
 
 processors:
 - add_cloud_metadata:
