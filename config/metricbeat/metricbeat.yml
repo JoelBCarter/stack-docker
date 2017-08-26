@@ -39,7 +39,7 @@ metricbeat.modules:
 
 - module: docker
   metricsets: ["container", "cpu", "diskio", "healthcheck", "info", "memory", "network"]
-  hosts: ["unix:///var/run/docker.sock"]
+  hosts: ["unix:///tmp/docker.sock"]
   enabled: true
   period: 10s
 

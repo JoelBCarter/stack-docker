@@ -73,9 +73,11 @@ services:
       - /sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro
       - /:/hostfs:ro
       - ./config/metricbeat/metricbeat.yml:/usr/share/metricbeat/metricbeat.yml:ro
+      - /var/run/docker.sock:/tmp/docker.sock
     command: metricbeat -e -system.hostfs=/hostfs
     # networks: ['stack']
     network_mode: host
+    privileged: true
     depends_on: ['elasticsearch']
 
   packetbeat:
@@ -106,5 +108,3 @@ services:
     # networks: ['stack']
     network_mode: host
     depends_on: ['kibana']
-
-networks: {stack: {}}
