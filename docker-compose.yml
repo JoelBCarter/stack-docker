@@ -78,6 +78,8 @@ services:
   packetbeat:
     container_name: packetbeat
     image: docker.elastic.co/beats/packetbeat:${TAG}
+    privileged: true
+    user: root
     # Packetbeat needs some elevated privileges to capture network traffic.
     # We'll grant them with POSIX capabilities.
     cap_add: ['NET_RAW', 'NET_ADMIN']
