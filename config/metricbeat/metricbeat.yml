@@ -50,6 +50,14 @@ metricbeat.modules:
   hosts: ["localhost:6379"]
   timeout: 1s
 
+- module: prometheus
+  metricsets: ["collector"]
+  enabled: true
+  period: 10s
+  hosts: ["localhost:8081", "localhost:8082"]
+  metrics_path: /metrics
+  # namespace: example
+
 processors:
 - add_cloud_metadata:
 output.elasticsearch:
