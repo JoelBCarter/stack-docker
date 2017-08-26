@@ -72,7 +72,7 @@ services:
       - /proc:/hostfs/proc:ro
       - /sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro
       - /:/hostfs:ro
-    command: metricbeat -e # -system.hostfs=/hostfs
+    command: metricbeat -e -system.hostfs=/hostfs
     # networks: ['stack']
     network_mode: host
     depends_on: ['elasticsearch']
